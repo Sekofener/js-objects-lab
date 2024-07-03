@@ -118,26 +118,132 @@ After writing this method, call it and pass in a Pokemon object of your choice f
 
 Solve Exercise 10 here:
 */
- game.catchPokemon = (pokemonObj) => {
-  game.party.push(pokemonObj)
+game.catchPokemon = function(pokemonObj) {
+  this.party.push(pokemonObj);
+};
+game.catchPokemon(pokemon[0]);
 
-}
 console.log(123)
 
 /*
-Exercise 11
+xercise 11
 1. Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify it so that it also decreases the number of pokeballs in your inventory each time you catch a Pokémon.
 2. How will you find and update the quantity of pokeballs in the `game.items` array?
-
 Tips:
 For this exercise, it's okay to have a negative number of pokeballs.
 After updating the method, call it and pass in a Pokemon object of your choice from the `pokemon` data to catch it.
 Also, log the `game.items` array to confirm that the pokeball quantity is being decremented.
-
 Solve Exercise 11 here:
 */
+function catchPokemon(pokemon) {
+  console.log(`Trying to catch ${pokemon.name}`);
+  // Decrease pokeball quantity
+  game.items.find(item => item.name === 'pokeball').quantity -= 1;
+  console.log(`Caught ${pokemon.name}!`);
+}
+// Example Pokemon object
+//let pokemon = { name: 'Pikachu' };
+// Call the modified method
+catchPokemon(pokemon);
+// Log the game.items array to confirm the decrement
+console.log(game.items);
 
+/*
+Exercise 12
+1. Similar to Exercise 6, now complete gyms with a difficulty below 6. How will you approach this?
+ (change the value of `complete` in the qualifying objects from false to true).
 
+Solve Exercise 12 here:
+*/
+let gymsDif = [
+  { difficulty: 6, completed: true },
+  { difficulty: 5, completed: true },
+  { difficulty: 4, completed: true },
+  { difficulty: 3, completed: true },
+  { difficulty: 2, completed: true },
+  { difficulty: 1, completed: true }
+];
+for (let i = 0; i < gymsDif.length; i++) {
+}
+for (let i = 0; i < gymsDif.length; i++) {
+  if (gymsDif[i].difficulty < 6) {
+      gymsDif[i].completed = false;
+  }
+}
+console.log(gymsDif);
 
-
-
+/*
+Exercise 13
+1. Create a `gymStatus` method in `game` to tally completed and incomplete gyms.
+2. How will you iterate through the `gyms` array and update the tally? Remember to log the final tally.
+This method should:
+  - Not accept any arguments.
+  - Initially create a constant `gymTally`, which is an object that has two
+    properties: `completed` and `incomplete`, both of which are initially set to 0.
+  - Iterate through the objects in the `game.gyms` array and update the
+    properties on `gymTally` as follows:
+    - `completed` should count how many gyms in the array have a value of `true`
+      for their `completed` property.
+    - `incomplete` should count how many gyms in the array have a value of
+      `false` for their `completed` property.
+  - Log the value of `gymTally`.
+  - The method should not return anything.
+For example, if five gym objects have a value of `true` on their `completed` property and
+three gym objects have a value of `false` on their `completed` property, the logged value would be:
+`{ completed: 5, incomplete: 3 }`.
+Solve Exercise 13 here:
+*/
+game.gymStatus = function() {
+  const gymTally = { completed: 0, incomplete: 0 };
+  this.gyms.forEach(gym => {
+    if (gym.completed) {
+      gymTally.completed++;
+    } else {
+      gymTally.incomplete++;
+    }
+  });
+  console.log(gymTally);
+};
+/*
+Exercise 14
+1. Add a `partyCount` method to `game` that counts the number of Pokémon in your party.
+This method should:
+- Not accept any arguments.
+- Count the number of Pokemon in the party.
+- return the found number of Pokemon in the party.
+Solve Exercise 14 here:
+*/
+function partyCount() {
+  return numberOfPokemon;
+}
+console.log(partyCount)
+/*
+Exercise 15
+1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
+(change the value of `complete` in the qualifying objects from false to true).
+Solve Exercise 15 here:
+*/
+let gymsDifs = [
+  { difficulty: 8, completed: true },
+  { difficulty: 7, completed: true },
+  { difficulty: 6, completed: true },
+  { difficulty: 5, completed: true },
+  { difficulty: 4, completed: true },
+  { difficulty: 3, completed: true },
+  { difficulty: 2, completed: true },
+  { difficulty: 1, completed: true }
+];
+for (let i = 0; i < gymsDifs.length; i++) {
+}
+for (let i = 0; i < gymsDifs.length; i++) {
+  if (gymsDifs[i].difficulty < 8) {
+      gymsDifs[i].completed = false;
+  }
+}
+console.log(gymsDifs);
+/*
+Exercise 16
+1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
+Solve Exercise 16 here:
+*/
+console.log(game);
