@@ -38,7 +38,7 @@ Exercise 3
 
 Solve Exercise 3 here:
 */
-game.push(difficulty)
+game.difficulty = "Medium";
 
 
 
@@ -81,7 +81,18 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 
 Solve Exercise 7 here:
 */
-game.party[0] = pokemon[1]
+function evolvePokemon(party, currentId) {
+  const evolutionMap = {
+    1: { id: 2, name: "Ivysaur" },
+    4: { id: 5, name: "Charmeleon" },
+    7: { id: 8, name: "Wartortle" },
+    25: { id: 26, name: "Raichu" }
+  };
+  const index = party.findIndex(pokemon => pokemon.id === currentId);
+  if (index !== -1 && evolutionMap[currentId]) {
+    party.splice(index, 1, evolutionMap[currentId]);
+  }
+}
 /*
 Exercise 8
 1. Print the name of each Pokémon in your party.
@@ -155,7 +166,7 @@ Exercise 12
 
 Solve Exercise 12 here:
 */
-let gymsDif = [
+let gyms = [
   { difficulty: 6, completed: true },
   { difficulty: 5, completed: true },
   { difficulty: 4, completed: true },
@@ -163,15 +174,17 @@ let gymsDif = [
   { difficulty: 2, completed: true },
   { difficulty: 1, completed: true }
 ];
-for (let i = 0; i < gymsDif.length; i++) {
-}
-for (let i = 0; i < gymsDif.length; i++) {
-  if (gymsDif[i].difficulty < 6) {
-      gymsDif[i].completed = false;
-  }
-}
-console.log(gymsDif);
 
+function completeGyms(gyms) {
+  gyms.forEach(gym => {
+    if (gym.difficulty < 6) {
+      gym.complete = true;
+    }
+  });
+}
+completeGyms(gyms);
+
+console.log(gyms);
 /*
 Exercise 13
 1. Create a `gymStatus` method in `game` to tally completed and incomplete gyms.
@@ -213,17 +226,23 @@ This method should:
 - return the found number of Pokemon in the party.
 Solve Exercise 14 here:
 */
-function partyCount() {
-  return numberOfPokemon;
+party: [
+  { id: 1, name: "Bulbasaur" },
+  { id: 4, name: "Charmander" },
+  { id: 7, name: "Squirtle" },
+  { id: 25, name: "Pikachu" }
+],
+partyCount: function() {
+  return this.party.length;
 }
-console.log(partyCount)
+console.log(game.partyCount());
 /*
 Exercise 15
 1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
 (change the value of `complete` in the qualifying objects from false to true).
 Solve Exercise 15 here:
 */
-let gymsDifs = [
+let game.gyms = [
   { difficulty: 8, completed: true },
   { difficulty: 7, completed: true },
   { difficulty: 6, completed: true },
@@ -233,17 +252,57 @@ let gymsDifs = [
   { difficulty: 2, completed: true },
   { difficulty: 1, completed: true }
 ];
-for (let i = 0; i < gymsDifs.length; i++) {
+const game.gyms(gyms) {
+  gyms.forEach(gym => {
+    if (gym.difficulty < 8) {
+      gym.complete = true;
+    }
+  });
 }
-for (let i = 0; i < gymsDifs.length; i++) {
-  if (gymsDifs[i].difficulty < 8) {
-      gymsDifs[i].completed = false;
-  }
-}
-console.log(gymsDifs);
+
+console.log(gyms);
 /*
 Exercise 16
 1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
 Solve Exercise 16 here:
 */
 console.log(game);
+/*
+Exercise 17
+1. Arrange the Pokémon in `game.party` by their HP. The one with the highest HP should come first.
+2. You'll need to use the `.sort()` method. How does the compare function work in sorting numbers?
+
+
+Solve Exercise 17 here:
+*/function sortPartyByHP(party) {
+  party.sort((a, b) => b.hp - a.hp);
+}
+
+// Sort the party
+sortPartyByHP(game.party);
+
+// Print the sorted party
+console.log(game.party);
+
+/*
+Exercise 18
+Add a new property to the `game` object called `collection` and initialize its value to an empty array.
+
+Copy the `catchPokemon` method you wrote in Exercise Twelve and paste it below. Modify it so that:
+  - Ensure that no more than six Pokemon can be in the party at any time. 
+    Excess Pokemon should be placed in the `game.collection` array.
+  - It's up to you how to distribute Pokemon in a situation where more than six 
+    would be placed into the `game.party` array.
+
+Again, for this exercise, it's okay to have a negative number of pokeballs.
+
+After updating the method, use it by calling it and passing in a pokemon object of your choice from the `pokemon` data to catch it.
+
+Also, log the `game.items` array to confirm that the pokeball quantity is being decremented.
+
+Solve Exercise 18 here:
+*/
+let game = {
+  party: [],
+  collection: [],
+}
