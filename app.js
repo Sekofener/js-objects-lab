@@ -16,18 +16,14 @@ const game = {
       { name: "pokeball", quantity: 8 },
       { name: "rare candy", quantity: 99 },
     ],
-  }
+  };
   console.dir(pokemon, { maxArrayLength: null })
+
   console.log(game)
-game.difficulty = "Hard"
-game.party.push(pokemon[0])
-
-console.dir(pokemon, { maxArrayLth: null })eng
 
 
 
 
-console.log(game)
 
 
 /*
@@ -81,18 +77,10 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 
 Solve Exercise 7 here:
 */
-function evolvePokemon(party, currentId) {
-  const evolutionMap = {
-    1: { id: 2, name: "Ivysaur" },
-    4: { id: 5, name: "Charmeleon" },
-    7: { id: 8, name: "Wartortle" },
-    25: { id: 26, name: "Raichu" }
-  };
-  const index = party.findIndex(pokemon => pokemon.id === currentId);
-  if (index !== -1 && evolutionMap[currentId]) {
-    party.splice(index, 1, evolutionMap[currentId]);
-  }
-}
+game.party.splice(0, 1, (pokemon[25]));
+
+
+
 /*
 Exercise 8
 1. Print the name of each Pokémon in your party.
@@ -112,8 +100,10 @@ Exercise 9
 
 Solve Exercise 9 here:
 */
-pokemon.forEach((starter)=>{
-    console.log(starter.name)
+pokemon.forEach((poke) => {
+  if(poke.starter === true) {
+      console.log(poke)
+  }
 })
 
 // /*
@@ -132,9 +122,9 @@ Solve Exercise 10 here:
 game.catchPokemon = function(pokemonObj) {
   this.party.push(pokemonObj);
 };
-game.catchPokemon(pokemon[0]);
+game.catchPokemon(57)
 
-console.log(123)
+
 
 /*
 xercise 11
@@ -175,16 +165,14 @@ let gyms = [
   { difficulty: 1, completed: true }
 ];
 
-function completeGyms(gyms) {
-  gyms.forEach(gym => {
-    if (gym.difficulty < 6) {
-      gym.complete = true;
-    }
-  });
-}
-completeGyms(gyms);
+       
+game.gyms.forEach((gym) => {
+  if(gym.completed != true && gym.difficulty < 6) {
+      gym.completed = true
+  }
+})
 
-console.log(gyms);
+
 /*
 Exercise 13
 1. Create a `gymStatus` method in `game` to tally completed and incomplete gyms.
@@ -232,10 +220,10 @@ party: [
   { id: 7, name: "Squirtle" },
   { id: 25, name: "Pikachu" }
 ],
-partyCount: function() {
-  return this.party.length;
+game.partyCount = function() {
+  return game.party.length
 }
-console.log(game.partyCount());
+game.partyCount()
 /*
 Exercise 15
 1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
@@ -252,15 +240,13 @@ let game.gyms = [
   { difficulty: 2, completed: true },
   { difficulty: 1, completed: true }
 ];
-const game.gyms(gyms) {
-  gyms.forEach(gym => {
-    if (gym.difficulty < 8) {
-      gym.complete = true;
-    }
-  });
-}
+ 
+game.gyms.forEach((gym) => {
+  if(gym.completed != true && gym.difficulty < 8) {
+      gym.completed = true
+  }
+})
 
-console.log(gyms);
 /*
 Exercise 16
 1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
